@@ -728,7 +728,7 @@ msgstr "前置数据标头"
 msgid "Early data is sent in path instead of header by default."
 msgstr "前置数据默认发送在路径而不是标头中。"
 
-#: htdocs/luci-static/resources/view/homeproxy/node.js:1211
+#: htdocs/luci-static/resources/view/homeproxy/node.js:1213
 msgid "Edit nodes"
 msgstr "修改节点"
 

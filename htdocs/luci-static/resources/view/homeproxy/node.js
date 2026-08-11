@@ -1208,9 +1208,9 @@ return view.extend({
 			subinfo.push({ 'hash': urlhash, 'title': title });
 		}
 
-		m = new form.Map('homeproxy', _('Edit nodes'));
+		m = new form.Map('homeproxy');
 
-		s = m.section(form.NamedSection, 'subscription', 'homeproxy');
+		s = m.section(form.NamedSection, 'subscription', 'homeproxy', _('Edit nodes'));
 
 		/* Node settings start */
 		/* User nodes start */
