@@ -1,3 +1,7 @@
+自用修改版：
+1、修改顶部状态栏与csing-box一致。
+2、增加重载按钮。
+
 TODO:
 - Subscription page slow response with a large number of nodes
 - Refactor nft rules
