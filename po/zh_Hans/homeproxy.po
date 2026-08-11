@@ -866,6 +866,10 @@ msgstr "附加记录"
 msgid "Failed to generate %s, error: %s."
 msgstr "生成 %s 失败，错误：%s。"
 
+#: htdocs/luci-static/resources/view/homeproxy/client.js:177
+msgid "Failed to restart service."
+msgstr "服务重启失败。"
+
 #: htdocs/luci-static/resources/homeproxy.js:261
 msgid "Failed to upload %s, error: %s."
 msgstr "上传 %s 失败，错误：%s。"
@@ -1656,6 +1660,10 @@ msgstr "节点"
 msgid "None"
 msgstr "无"
 
+#: htdocs/luci-static/resources/view/homeproxy/client.js:122
+msgid "Not selected"
+msgstr "未选择"
+
 #: htdocs/luci-static/resources/view/homeproxy/node.js:573
 #: htdocs/luci-static/resources/view/homeproxy/server.js:294
 msgid "Obfuscate password"
@@ -2003,6 +2011,10 @@ msgstr "区域 ID"
 msgid "Reject"
 msgstr "拒绝"
 
+#: htdocs/luci-static/resources/view/homeproxy/client.js:180
+msgid "Reload"
+msgstr "重载"
+
 #: htdocs/luci-static/resources/view/homeproxy/client.js:1336
 msgid "Remote"
 msgstr "远程"
@@ -2114,6 +2126,14 @@ msgstr "规则集 IP CIDR 作为源 IP"
 msgid "Rule set URL"
 msgstr "规则集 URL"
 
+#: htdocs/luci-static/resources/view/homeproxy/client.js:130
+msgid "Running"
+msgstr "运行中"
+
+#: htdocs/luci-static/resources/view/homeproxy/client.js:136
+msgid "Running status"
+msgstr "运行状态"
+
 #: htdocs/luci-static/resources/view/homeproxy/client.js:623
 #: htdocs/luci-static/resources/view/homeproxy/client.js:1111
 #: htdocs/luci-static/resources/view/homeproxy/node.js:438
@@ -2177,6 +2197,10 @@ msgstr "服务器设置"
 #: root/usr/share/luci/menu.d/luci-app-homeproxy.json:38
 msgid "Service Status"
 msgstr "服务状态"
+
+#: htdocs/luci-static/resources/view/homeproxy/client.js:175
+msgid "Service restarted."
+msgstr "服务已重启。"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:1175
 msgid "Set domain strategy for this query."
@@ -2291,6 +2315,10 @@ msgid ""
 "Specify target ports to be proxied. Multiple ports must be separated by "
 "commas."
 msgstr "指定需要被代理的目标端口。多个端口必须用逗号隔开。"
+
+#: htdocs/luci-static/resources/view/homeproxy/client.js:130
+msgid "Stopped"
+msgstr "已停用"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:913
 msgid "Store RDRC"
@@ -2795,6 +2823,10 @@ msgid "UUID"
 msgstr "UUID"
 
 #: htdocs/luci-static/resources/view/homeproxy/status.js:98
+msgid "Unknown"
+msgstr "未知"
+
+#: htdocs/luci-static/resources/view/homeproxy/status.js:98
 msgid "Unknown error."
 msgstr "未知错误。"
 
@@ -3038,6 +3070,10 @@ msgstr "quic-go / uquic chrome"
 #: htdocs/luci-static/resources/view/homeproxy/status.js:285
 msgid "sing-box client"
 msgstr "sing-box 客户端"
+
+#: htdocs/luci-static/resources/view/homeproxy/client.js:141
+msgid "sing-box core version"
+msgstr "sing-box 内核版本"
 
 #: htdocs/luci-static/resources/view/homeproxy/status.js:288
 msgid "sing-box server"

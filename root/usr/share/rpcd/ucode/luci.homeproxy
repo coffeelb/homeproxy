@@ -248,6 +248,12 @@ const methods = {
 			} else
 				return { status: 255, error: 'illegal type' };
 		}
+	},
+	service_restart: {
+		call: function() {
+			const exit_code = system('/etc/init.d/homeproxy restart');
+			return { status: exit_code };
+		}
 	}
 };
 

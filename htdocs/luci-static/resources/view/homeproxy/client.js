@@ -10,6 +10,7 @@
 'require poll';
 'require rpc';
 'require uci';
+'require ui';
 'require validation';
 'require view';
 
@@ -38,6 +39,12 @@ const callWriteDomainList = rpc.declare({
 	expect: { '': {} }
 });
 
+const callServiceRestart = rpc.declare({
+	object: 'luci.homeproxy',
+	method: 'service_restart',
+	expect: { '': {} }
+});
+
 function getServiceStatus() {
 	return L.resolveDefault(callServiceList('homeproxy'), {}).then((res) => {
 		let isRunning = false;
@@ -48,15 +55,90 @@ function getServiceStatus() {
 	});
 }
 
-function renderStatus(isRunning, version) {
-	let spanTemp = '<em><span style="color:%s"><strong>%s (sing-box v%s) %s</strong></span></em>';
-	let renderHTML;
-	if (isRunning)
-		renderHTML = spanTemp.format('green', _('HomeProxy'), version, _('RUNNING'));
-	else
-		renderHTML = spanTemp.format('red', _('HomeProxy'), version, _('NOT RUNNING'));
+const routing_modes = {
+	'gfwlist': _('GFWList'),
+	'bypass_mainland_china': _('Bypass mainland China'),
+	'proxy_mainland_china': _('Only proxy mainland China'),
+	'custom': _('Custom routing'),
+	'global': _('Global')
+};
 
-	return renderHTML;
+const status_css = '				\
+:root {						\
+	--text-color: #000000;			\
+}						\
+html[data-darkmode="true"] {			\
+	--text-color: #e0e0e0;			\
+}						\
+.homeproxy-status-bar {				\
+	display: flex;				\
+	flex-wrap: wrap;			\
+	gap: 8px 40px;				\
+	padding: 10px 0;			\
+}						\
+.homeproxy-status-bar .status-item .k {		\
+	font-size: 12px;			\
+	color: var(--text-color-low);		\
+}						\
+.homeproxy-status-bar .status-item .v {		\
+	font-size: 14px;			\
+	font-weight: bold;			\
+	color: var(--text-color);		\
+	margin-top: 2px;			\
+}						\
+.status-dot {					\
+	display: inline-block;			\
+	width: 10px;				\
+	height: 10px;				\
+	border-radius: 50%;			\
+	margin-right: 6px;			\
+	vertical-align: baseline;		\
+}						\
+.status-dot.success {				\
+	background: #16a34a;			\
+}						\
+.status-dot.danger {				\
+	background: #dc2626;			\
+}						\
+.status-text.success {				\
+	color: #16a34a;				\
+}						\
+.status-text.danger {				\
+	color: #dc2626;				\
+}';
+
+function escapeHtml(s) {
+	return String(s).replace(/[&<>"']/g, (c) => ({
+		'&': '&amp;',
+		'<': '&lt;',
+		'>': '&gt;',
+		'"': '&quot;',
+		"'": '&#39;'
+	}[c]));
+}
+
+function renderStatus(isRunning, version) {
+	const node = uci.get('homeproxy', 'config', 'main_node');
+	const nodeLabel = (!node || node === 'nil') ? _('Not selected') :
+		(node === 'urltest') ? _('URLTest') : (uci.get('homeproxy', node, 'label') || node);
+	const udpNode = uci.get('homeproxy', 'config', 'main_udp_node');
+	const udpNodeLabel = (!udpNode || udpNode === 'nil') ? _('Not selected') :
+		(udpNode === 'urltest') ? _('URLTest') :
+		(udpNode === 'same') ? _('Same as main node') : (uci.get('homeproxy', udpNode, 'label') || udpNode);
+	const mode = routing_modes[uci.get('homeproxy', 'config', 'routing_mode')] || _('Unknown');
+	const cls = isRunning ? 'success' : 'danger';
+	const state = isRunning ? _('Running') : _('Stopped');
+
+	const item = (label, value) =>
+		'<div class="status-item"><div class="k">' + escapeHtml(label) +
+		'</div><div class="v">' + value + '</div></div>';
+
+	return item(_('Running status'),
+			'<span class="status-dot ' + cls + '"></span><span class="status-text ' + cls + '">' + escapeHtml(state) + '</span>') +
+		item(_('Main node'), escapeHtml(nodeLabel)) +
+		item(_('Main UDP node'), escapeHtml(udpNodeLabel)) +
+		item(_('Routing mode'), escapeHtml(mode)) +
+		item(_('sing-box core version'), escapeHtml(version ? 'v' + version : _('Unknown')));
 }
 
 let stubValidator = {
@@ -110,8 +192,13 @@ return view.extend({
 				});
 			});
 
-			return E('div', { class: 'cbi-section', id: 'status_bar' }, [
-					E('p', { id: 'service_status' }, _('Collecting data...'))
+			return E([
+				E('style', [ status_css ]),
+				E('div', { class: 'cbi-section' }, [
+					E('div', { class: 'cbi-section-node' }, [
+						E('div', { class: 'homeproxy-status-bar', id: 'service_status' }, _('Collecting data...'))
+					])
+				])
 			]);
 		}
 
@@ -156,6 +243,24 @@ return view.extend({
 		o.default = 'nil';
 		o.depends({'routing_mode': /^((?!custom).)+$/, 'proxy_mode': /^((?!redirect$).)+$/});
 		o.rmempty = false;
+		o.renderWidget = function(section_id, option_index, cfgvalue) {
+			const widget = form.ListValue.prototype.renderWidget.call(this, section_id, option_index, cfgvalue);
+			const container = E('div', { 'style': 'display:flex;flex-direction:column;gap:6px;align-items:flex-start;' }, [
+				widget,
+				E('button', {
+					'class': 'btn cbi-button cbi-button-action',
+					'click': ui.createHandlerFn(this, () => {
+						return L.resolveDefault(callServiceRestart(), {}).then((res) => {
+							if (res && res.status === 0)
+								ui.addNotification(null, E('p', {}, _('Service restarted.')));
+							else
+								ui.addNotification(null, E('p', {}, _('Failed to restart service.')));
+						});
+					})
+				}, [ _('Reload') ])
+			]);
+			return container;
+		}
 
 		o = s.taboption('routing', hp.CBIStaticList, 'main_udp_urltest_nodes', _('URLTest nodes'),
 			_('List of nodes to test.'));

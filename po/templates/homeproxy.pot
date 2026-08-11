@@ -843,6 +843,10 @@ msgstr ""
 msgid "Failed to generate %s, error: %s."
 msgstr ""
 
+#: htdocs/luci-static/resources/view/homeproxy/client.js:177
+msgid "Failed to restart service."
+msgstr ""
+
 #: htdocs/luci-static/resources/homeproxy.js:261
 msgid "Failed to upload %s, error: %s."
 msgstr ""
@@ -1625,6 +1629,10 @@ msgstr ""
 msgid "None"
 msgstr ""
 
+#: htdocs/luci-static/resources/view/homeproxy/client.js:122
+msgid "Not selected"
+msgstr ""
+
 #: htdocs/luci-static/resources/view/homeproxy/node.js:573
 #: htdocs/luci-static/resources/view/homeproxy/server.js:294
 msgid "Obfuscate password"
@@ -1972,6 +1980,10 @@ msgstr ""
 msgid "Reject"
 msgstr ""
 
+#: htdocs/luci-static/resources/view/homeproxy/client.js:180
+msgid "Reload"
+msgstr ""
+
 #: htdocs/luci-static/resources/view/homeproxy/client.js:1336
 msgid "Remote"
 msgstr ""
@@ -2083,6 +2095,14 @@ msgstr ""
 msgid "Rule set URL"
 msgstr ""
 
+#: htdocs/luci-static/resources/view/homeproxy/client.js:130
+msgid "Running"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/homeproxy/client.js:136
+msgid "Running status"
+msgstr ""
+
 #: htdocs/luci-static/resources/view/homeproxy/client.js:623
 #: htdocs/luci-static/resources/view/homeproxy/client.js:1111
 #: htdocs/luci-static/resources/view/homeproxy/node.js:438
@@ -2145,6 +2165,10 @@ msgstr ""
 
 #: root/usr/share/luci/menu.d/luci-app-homeproxy.json:38
 msgid "Service Status"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/homeproxy/client.js:175
+msgid "Service restarted."
 msgstr ""
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:1175
@@ -2250,6 +2274,10 @@ msgstr ""
 msgid ""
 "Specify target ports to be proxied. Multiple ports must be separated by "
 "commas."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/homeproxy/client.js:130
+msgid "Stopped"
 msgstr ""
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:913
@@ -2726,6 +2754,10 @@ msgid "UUID"
 msgstr ""
 
 #: htdocs/luci-static/resources/view/homeproxy/status.js:98
+msgid "Unknown"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/homeproxy/status.js:98
 msgid "Unknown error."
 msgstr ""
 
@@ -2968,6 +3000,10 @@ msgstr ""
 
 #: htdocs/luci-static/resources/view/homeproxy/status.js:285
 msgid "sing-box client"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/homeproxy/client.js:141
+msgid "sing-box core version"
 msgstr ""
 
 #: htdocs/luci-static/resources/view/homeproxy/status.js:288
