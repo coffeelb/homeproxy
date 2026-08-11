@@ -251,7 +251,7 @@ const methods = {
 	},
 	service_restart: {
 		call: function() {
-			const exit_code = system('/etc/init.d/homeproxy restart');
+			const exit_code = system('/etc/init.d/homeproxy reload');
 			return { status: exit_code };
 		}
 	}
