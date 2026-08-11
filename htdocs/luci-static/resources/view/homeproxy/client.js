@@ -400,7 +400,7 @@ return view.extend({
 		o.rmempty = false;
 
 		o = s.taboption('routing', form.Flag, 'ipv6_support', _('IPv6 support'));
-		o.default = o.enabled;
+		o.default = o.disabled;
 		o.rmempty = false;
 
 		/* Custom routing settings start */
