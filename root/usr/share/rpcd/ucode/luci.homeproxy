@@ -249,7 +249,7 @@ const methods = {
 				return { status: 255, error: 'illegal type' };
 		}
 	},
-	service_restart: {
+	service_reload: {
 		call: function() {
 			const exit_code = system('/etc/init.d/homeproxy reload');
 			return { status: exit_code };

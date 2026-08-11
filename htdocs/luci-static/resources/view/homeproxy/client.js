@@ -39,9 +39,9 @@ const callWriteDomainList = rpc.declare({
 	expect: { '': {} }
 });
 
-const callServiceRestart = rpc.declare({
+const callServiceReload = rpc.declare({
 	object: 'luci.homeproxy',
-	method: 'service_restart',
+	method: 'service_reload',
 	expect: { '': {} }
 });
 
@@ -250,7 +250,7 @@ return view.extend({
 				E('button', {
 					'class': 'btn cbi-button cbi-button-action',
 					'click': ui.createHandlerFn(this, () => {
-						return L.resolveDefault(callServiceRestart(), {}).then((res) => {
+						return L.resolveDefault(callServiceReload(), {}).then((res) => {
 							if (res && res.status === 0)
 								ui.addNotification(null, E('p', {}, _('Service reloaded.')));
 							else
