@@ -844,7 +844,7 @@ msgid "Failed to generate %s, error: %s."
 msgstr ""
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:177
-msgid "Failed to restart service."
+msgid "Failed to reload service."
 msgstr ""
 
 #: htdocs/luci-static/resources/homeproxy.js:261
@@ -2168,7 +2168,7 @@ msgid "Service Status"
 msgstr ""
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:175
-msgid "Service restarted."
+msgid "Service reloaded."
 msgstr ""
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:1175

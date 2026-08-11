@@ -252,9 +252,9 @@ return view.extend({
 					'click': ui.createHandlerFn(this, () => {
 						return L.resolveDefault(callServiceRestart(), {}).then((res) => {
 							if (res && res.status === 0)
-								ui.addNotification(null, E('p', {}, _('Service restarted.')));
+								ui.addNotification(null, E('p', {}, _('Service reloaded.')));
 							else
-								ui.addNotification(null, E('p', {}, _('Failed to restart service.')));
+								ui.addNotification(null, E('p', {}, _('Failed to reload service.')));
 						});
 					})
 				}, [ _('Reload') ])

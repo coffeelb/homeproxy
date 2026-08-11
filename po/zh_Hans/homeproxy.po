@@ -867,8 +867,8 @@ msgid "Failed to generate %s, error: %s."
 msgstr "生成 %s 失败，错误：%s。"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:177
-msgid "Failed to restart service."
-msgstr "服务重启失败。"
+msgid "Failed to reload service."
+msgstr "服务重载失败。"
 
 #: htdocs/luci-static/resources/homeproxy.js:261
 msgid "Failed to upload %s, error: %s."
@@ -2199,8 +2199,8 @@ msgid "Service Status"
 msgstr "服务状态"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:175
-msgid "Service restarted."
-msgstr "服务已重启。"
+msgid "Service reloaded."
+msgstr "服务已重载。"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:1175
 msgid "Set domain strategy for this query."
