@@ -244,7 +244,7 @@ return view.extend({
 		o.depends({'routing_mode': /^((?!custom).)+$/, 'proxy_mode': /^((?!redirect$).)+$/});
 		o.rmempty = false;
 
-		o = s.taboption('routing', form.DummyValue, 'service_actions', '');
+		o = s.taboption('routing', form.DummyValue, 'service_actions', ' ');
 		o.renderWidget = function(section_id, option_index, cfgvalue) {
 			return E('button', {
 				'class': 'btn cbi-button cbi-button-action',
